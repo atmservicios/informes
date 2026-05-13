@@ -203,7 +203,6 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
           shading: { type: ShadingType.CLEAR, fill: 'D9D9D9' },
           verticalAlign: VerticalAlign.CENTER,
           margins: { top: 60, bottom: 60, left: 80, right: 80 },
-          borders: allBorders(),
           children: [new Paragraph({ children: [new TextRun({ text: label, bold: true, size: 24, font: 'Calibri', color: '000000' })] })],
         }),
         new TableCell({
@@ -211,7 +210,6 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
           columnSpan: 3,
           verticalAlign: VerticalAlign.CENTER,
           margins: { top: 60, bottom: 60, left: 80, right: 80 },
-          borders: allBorders(),
           children: [new Paragraph({ children: [new TextRun({ text: value, size: 24, font: 'Calibri', color: '000000' })] })],
         }),
       ],
@@ -235,7 +233,6 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
       shading: isLabel ? { type: ShadingType.CLEAR, fill: 'D9D9D9' } : undefined,
       verticalAlign: VerticalAlign.CENTER,
       margins: { top: 60, bottom: 60, left: 80, right: 80 },
-      borders: allBorders(),
       children: [new Paragraph({ children: [new TextRun({ text, bold: isLabel, size: 24, font: 'Calibri', color: '000000' })] })],
     });
   }
@@ -273,7 +270,6 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
         children: [
           new TableCell({
             columnSpan: 4,
-            borders: allBorders(),
             children: [new Paragraph({ children: [new TextRun({ text: '' })] })],
           }),
         ],

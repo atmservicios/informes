@@ -109,13 +109,52 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
 
   // ── Página 1 ──────────────────────────────────────
 
-  // Logo paragraph (alineado a la izquierda)
-  const logoParagraph = new Paragraph({
-    alignment: AlignmentType.LEFT,
-    spacing: { after: 300 },
-    children: logoRun
-      ? [logoRun]
-      : [new TextRun({ text: "ATM'S Servicios", bold: true, size: 28, font: 'Calibri', color: '4a7c4e' })],
+  // ── Encabezado (Logo a la izquierda, OT a la derecha) ────────────────
+  const headerTable = new Table({
+    width: { size: 100, type: WidthType.PERCENTAGE },
+    borders: {
+      top: { style: BorderStyle.NONE },
+      bottom: { style: BorderStyle.NONE },
+      left: { style: BorderStyle.NONE },
+      right: { style: BorderStyle.NONE },
+      insideHorizontal: { style: BorderStyle.NONE },
+      insideVertical: { style: BorderStyle.NONE },
+    },
+    rows: [
+      new TableRow({
+        children: [
+          new TableCell({
+            width: { size: 50, type: WidthType.PERCENTAGE },
+            children: [
+              new Paragraph({
+                alignment: AlignmentType.LEFT,
+                children: logoRun
+                  ? [logoRun]
+                  : [new TextRun({ text: "ATM'S Servicios", bold: true, size: 28, font: 'Calibri', color: '4a7c4e' })],
+              }),
+            ],
+          }),
+          new TableCell({
+            width: { size: 50, type: WidthType.PERCENTAGE },
+            verticalAlign: VerticalAlign.CENTER,
+            children: [
+              new Paragraph({
+                alignment: AlignmentType.RIGHT,
+                children: [
+                  new TextRun({
+                    text: `OT: ${informe.numeroOT || '____'}`,
+                    bold: true,
+                    size: 24, // 12pt
+                    font: 'Calibri',
+                    color: '000000',
+                  }),
+                ],
+              }),
+            ],
+          }),
+        ],
+      }),
+    ],
   });
 
   // Título principal subrayado y centrado
@@ -333,7 +372,8 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
           },
         },
         children: [
-          logoParagraph,
+          headerTable,
+          new Paragraph({ spacing: { after: 300 }, children: [] }), // Espacio después del header
           tituloParagraph,
           introText,
           dataTable,

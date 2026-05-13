@@ -23,6 +23,7 @@ import {
 import { useRouter } from 'next/navigation';
 
 const emptyForm = (): Omit<Informe, 'id'> => ({
+  numeroOT: '',
   destinatario: '',
   direccion: '',
   ubicacion: '',
@@ -81,6 +82,7 @@ export default function FormularioInforme() {
     setStatus({ type: 'saving' });
 
     const payload = {
+      numero_ot: form.numeroOT,
       destinatario: form.destinatario,
       direccion: form.direccion,
       ubicacion: form.ubicacion,
@@ -196,6 +198,20 @@ export default function FormularioInforme() {
       )}
 
       <div className="space-y-6">
+        <Section icon={<FileText className="w-4 h-4" />} title="General">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <InputField
+              id="numeroOT"
+              name="numeroOT"
+              label="Número de OT"
+              value={form.numeroOT}
+              onChange={handleChange}
+              placeholder="Ej: 12345"
+              required
+            />
+          </div>
+        </Section>
+
         {/* ── Sección 1: Ubicación ── */}
         <Section icon={<MapPin className="w-4 h-4" />} title="Ubicación">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

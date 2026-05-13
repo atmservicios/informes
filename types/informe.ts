@@ -1,5 +1,6 @@
 export interface Informe {
   id?: string;
+  numeroOT: string;
   destinatario: string; // Para la línea "Estimados ..."
   direccion: string;
   ubicacion: string;

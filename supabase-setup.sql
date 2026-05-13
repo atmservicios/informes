@@ -5,7 +5,7 @@
 
 CREATE TABLE IF NOT EXISTS informes (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-
+  numero_ot text,
   direccion text,
   ubicacion text,
   comuna text,

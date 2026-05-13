@@ -126,7 +126,7 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
       new TextRun({
         text: 'INFORME DE ORDEN DE TRABAJO',
         bold: true,
-        size: 28,
+        size: 36,
         font: 'Calibri',
         color: '000000',
         underline: { type: UnderlineType.SINGLE },

@@ -242,15 +242,23 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
 
   function allBorders() {
     return {
-      top: { style: BorderStyle.SINGLE, size: 4, color: '000000' },
-      bottom: { style: BorderStyle.SINGLE, size: 4, color: '000000' },
-      left: { style: BorderStyle.SINGLE, size: 4, color: '000000' },
-      right: { style: BorderStyle.SINGLE, size: 4, color: '000000' },
+      top: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
+      bottom: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
+      left: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
+      right: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
     };
   }
 
   const dataTable = new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
+    borders: {
+      top: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
+      bottom: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
+      left: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
+      right: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
+      insideHorizontal: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
+      insideVertical: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
+    },
     rows: [
       fullRow('Dirección', informe.direccion || ''),
       fullRow('Ubicación', informe.ubicacion || ''),

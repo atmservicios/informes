@@ -204,6 +204,7 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
           shading: { type: ShadingType.CLEAR, fill: 'D9D9D9' },
           verticalAlign: VerticalAlign.CENTER,
           margins: { top: 60, bottom: 60, left: 80, right: 80 },
+          borders: allBorders(),
           children: [new Paragraph({ children: [new TextRun({ text: label, bold: true, size: 24, font: 'Calibri', color: '000000' })] })],
         }),
         new TableCell({
@@ -211,6 +212,7 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
           columnSpan: 3,
           verticalAlign: VerticalAlign.CENTER,
           margins: { top: 60, bottom: 60, left: 80, right: 80 },
+          borders: allBorders(),
           children: [new Paragraph({ children: [new TextRun({ text: value, size: 24, font: 'Calibri', color: '000000' })] })],
         }),
       ],
@@ -234,29 +236,22 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
       shading: isLabel ? { type: ShadingType.CLEAR, fill: 'D9D9D9' } : undefined,
       verticalAlign: VerticalAlign.CENTER,
       margins: { top: 60, bottom: 60, left: 80, right: 80 },
+      borders: allBorders(),
       children: [new Paragraph({ children: [new TextRun({ text, bold: isLabel, size: 24, font: 'Calibri', color: '000000' })] })],
     });
   }
 
   function allBorders() {
     return {
-      top: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
-      bottom: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
-      left: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
-      right: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
+      top: { style: BorderStyle.SINGLE, size: 12, color: '000000' },
+      bottom: { style: BorderStyle.SINGLE, size: 12, color: '000000' },
+      left: { style: BorderStyle.SINGLE, size: 12, color: '000000' },
+      right: { style: BorderStyle.SINGLE, size: 12, color: '000000' },
     };
   }
 
   const dataTable = new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
-    borders: {
-      top: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
-      bottom: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
-      left: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
-      right: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
-      insideHorizontal: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
-      insideVertical: { style: BorderStyle.SINGLE, size: 8, color: '000000' },
-    },
     rows: [
       fullRow('Dirección', informe.direccion || ''),
       fullRow('Ubicación', informe.ubicacion || ''),
@@ -271,6 +266,7 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
         children: [
           new TableCell({
             columnSpan: 4,
+            borders: allBorders(),
             children: [new Paragraph({ children: [new TextRun({ text: '' })] })],
           }),
         ],

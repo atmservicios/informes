@@ -17,7 +17,7 @@ export interface Informe {
   fechaInicio: string;
   fechaFin: string;
 
-  valorServicio: number;
+  valorServicio: string;
 
   detalle: string;
   resumenTrabajo: string;

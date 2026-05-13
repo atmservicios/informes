@@ -231,7 +231,7 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
           }),
         ],
       }),
-      fullRow('Valor Servicio', informe.valorServicio ? `$${Number(informe.valorServicio).toLocaleString('es-CL')}` : ''),
+      fullRow('Valor Servicio', informe.valorServicio || ''),
     ],
   });
 

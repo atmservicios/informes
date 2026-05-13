@@ -35,7 +35,7 @@ const emptyForm = (): Omit<Informe, 'id'> => ({
   tecnicoSupervisor: '',
   fechaInicio: '',
   fechaFin: '',
-  valorServicio: 0,
+  valorServicio: '',
   detalle: '',
   resumenTrabajo: '',
   imagenes: [],
@@ -57,7 +57,7 @@ export default function FormularioInforme() {
     const { name, value, type } = e.target;
     setForm((prev) => ({
       ...prev,
-      [name]: type === 'number' ? parseFloat(value) || 0 : value,
+      [name]: value,
     }));
   };
 
@@ -330,11 +330,10 @@ export default function FormularioInforme() {
               id="valorServicio"
               name="valorServicio"
               label="Valor del Servicio"
-              type="number"
+              type="text"
               value={form.valorServicio}
               onChange={handleChange}
-              placeholder="0"
-              prefix="$"
+              placeholder="Ej: $ 139.000 + IVA"
             />
           </div>
         </Section>

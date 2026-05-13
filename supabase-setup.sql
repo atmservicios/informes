@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS informes (
   fecha_inicio timestamptz,
   fecha_fin timestamptz,
 
-  valor_servicio numeric,
+  valor_servicio text,
 
   detalle text,
   resumen_trabajo text,

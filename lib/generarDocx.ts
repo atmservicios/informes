@@ -73,7 +73,7 @@ function valueCell(text: string, colSpan = 1): TableCell {
     children: [
       new Paragraph({
         children: [
-          new TextRun({ text, size: 20, font: 'Calibri', color: '000000' }),
+          new TextRun({ text, size: 24, font: 'Calibri', color: '000000' }),
         ],
       }),
     ],
@@ -140,10 +140,10 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
     alignment: AlignmentType.LEFT,
     spacing: { after: 200 },
     children: [
-      new TextRun({ text: 'Estimados ', size: 20, font: 'Calibri', color: '000000' }),
+      new TextRun({ text: 'Estimados ', size: 24, font: 'Calibri', color: '000000' }),
       new TextRun({ text: solicitanteTexto, bold: true, size: 24, font: 'Calibri', color: '000000',
         underline: { type: UnderlineType.SINGLE } }),
-      new TextRun({ text: ', informo a ustedes detalle de la supervisión realizada.', size: 20, font: 'Calibri', color: '000000' }),
+      new TextRun({ text: ', informo a ustedes detalle de la supervisión realizada.', size: 24, font: 'Calibri', color: '000000' }),
     ],
   });
 
@@ -173,7 +173,7 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
           verticalAlign: VerticalAlign.CENTER,
           margins: { top: 60, bottom: 60, left: 80, right: 80 },
           borders: allBorders(),
-          children: [new Paragraph({ children: [new TextRun({ text: value, size: 20, font: 'Calibri', color: '000000' })] })],
+          children: [new Paragraph({ children: [new TextRun({ text: value, size: 24, font: 'Calibri', color: '000000' })] })],
         }),
       ],
     });
@@ -197,7 +197,7 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
       verticalAlign: VerticalAlign.CENTER,
       margins: { top: 60, bottom: 60, left: 80, right: 80 },
       borders: allBorders(),
-      children: [new Paragraph({ children: [new TextRun({ text, bold: isLabel, size: isLabel ? 24 : 20, font: 'Calibri', color: '000000' })] })],
+      children: [new Paragraph({ children: [new TextRun({ text, bold: isLabel, size: 24, font: 'Calibri', color: '000000' })] })],
     });
   }
 
@@ -245,7 +245,7 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
     }),
     new Paragraph({
       spacing: { after: 200 },
-      children: [new TextRun({ text: contenido || '', size: 20, font: 'Calibri' })],
+      children: [new TextRun({ text: contenido || '', size: 24, font: 'Calibri' })],
     }),
   ];
 

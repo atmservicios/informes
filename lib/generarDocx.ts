@@ -190,10 +190,11 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
   // Columnas: [label(30%) | value(70%)] o [label(20%) | value(30%) | label(20%) | value(30%)]
   // Total 9180 twips (100% = 9180 en carta)
 
-  const COL_LBL1 = 2300;
-  const COL_VAL1 = 6880; // ocupa el resto
-  const COL_LBL2 = 1800;
-  const COL_VAL2 = 2500;
+  const COL_LBL1 = 2500; // Columna 1
+  const COL_VAL2 = 2250; // Columna 2
+  const COL_LBL2 = 2000; // Columna 3
+  const COL_VAL_FIN = 2250; // Columna 4 (Total 9000)
+  const COL_TOTAL_VAL = COL_VAL2 + COL_LBL2 + COL_VAL_FIN; // 6500
 
   function fullRow(label: string, value: string): TableRow {
     return new TableRow({
@@ -206,7 +207,7 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
           children: [new Paragraph({ children: [new TextRun({ text: label, bold: true, size: 24, font: 'Calibri', color: '000000' })] })],
         }),
         new TableCell({
-          width: { size: COL_VAL1, type: WidthType.DXA },
+          width: { size: COL_TOTAL_VAL, type: WidthType.DXA },
           columnSpan: 3,
           verticalAlign: VerticalAlign.CENTER,
           margins: { top: 60, bottom: 60, left: 80, right: 80 },
@@ -222,7 +223,7 @@ export async function generarDocx(informe: Informe): Promise<Buffer> {
         mkCell(label1, COL_LBL1, true),
         mkCell(val1, COL_VAL2, false),
         mkCell(label2, COL_LBL2, true),
-        mkCell(val2, COL_VAL2, false),
+        mkCell(val2, COL_VAL_FIN, false),
       ],
     });
   }

@@ -92,13 +92,17 @@ async function fetchImageBuffer(url: string): Promise<Buffer | null> {
 
 export async function generarDocx(informe: Informe): Promise<Buffer> {
   // ── Logo ─────────────────────────────────────────
-  const logoPath = path.join(process.cwd(), 'public', 'imagen1.jpg');
+  // Intentar con ambas variantes de capitalización
+  const logoPath =
+    fs.existsSync(path.join(process.cwd(), 'public', 'Imagen1.jpg'))
+      ? path.join(process.cwd(), 'public', 'Imagen1.jpg')
+      : path.join(process.cwd(), 'public', 'imagen1.jpg');
   let logoRun: ImageRun | null = null;
   if (fs.existsSync(logoPath)) {
     const logoBuffer = fs.readFileSync(logoPath);
     logoRun = new ImageRun({
       data: logoBuffer,
-      transformation: { width: 180, height: 60 },
+      transformation: { width: 220, height: 55 },
       type: 'jpg',
     });
   }
